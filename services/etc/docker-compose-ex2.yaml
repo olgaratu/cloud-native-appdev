@@ -1,0 +1,28 @@
+services:
+# Exercise 2: Add services for api- and content services.
+  api:
+    build: ../api/
+    ports:
+      - "80:80"
+  content:
+    build: ../content
+    environment:
+      - CONTENT_NAME_DDB_TABLE_NAME=YourTableName
+      - IS_LOCAL=true
+
+  dynamodb-local:
+    image: amazon/dynamodb-local
+    ports:
+      - "8000:8000"
+    command: "-jar DynamoDBLocal.jar -inMemory -sharedDb"
+
+  init-dynamodb:
+    build: ./local-ddb-helper-image
+    depends_on:
+      - dynamodb-local
+    environment:
+      - CONTENT_NAME_DDB_TABLE_NAME=YourTableName
+      - AWS_DEFAULT_REGION=local
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
+    command: /bin/bash /scripts/init-dynamodb.sh

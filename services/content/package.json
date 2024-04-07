@@ -1,0 +1,13 @@
+{
+  "name": "tms-content",
+  "version": "0.1.0",
+  "devDependencies": {
+    "eslint": "^8.36.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.540.0",
+    "@aws-sdk/lib-dynamodb": "^3.549.0",
+    "env-var": "^7.4.1",
+    "express": "^4.18.2"
+  }
+}

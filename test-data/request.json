@@ -1,0 +1,13 @@
+{
+  "language": {
+    "source": "en-GB",
+    "target": "sv-SE"
+  },
+  "fields": [
+    {
+      "id": "001001",
+      "type": "translation",
+      "value": "Text to translate"
+    }
+  ]
+}
