@@ -60,9 +60,12 @@ docker run -it --rm [image_name] sh
 
 ### curl
 ```
-# POST request
+# POST request to create content request
 curl -X POST http://__HOST__/content-request -H "Content-Type: application/json" -d @test-data/request.json
 
+# GET request to fetch a content request
+curl http://__HOST__/content-request/__REQUEST_ID__
+  
 # POST request
 curl http://__HOST__/healthz
 

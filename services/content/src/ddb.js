@@ -3,7 +3,6 @@ const { DynamoDBDocumentClient, PutCommand, GetCommand  } = require("@aws-sdk/li
 const env       = require('./env');
 const crypto = require('crypto');
 
-// Create a new DynamoDB client
 const dynamoDbClientConfig = {
     region: 'eu-north-1',
     endpoint: env.isLocal ? 'http://dynamodb-local:8000' : undefined,
@@ -21,28 +20,9 @@ async function storeRequest (requestData) {
     if (!env.ddbTable)
         return { status: 200, data: { "id": `dummy-${id}-dummy` } };
 
-
-    // TODO Exercise 3: Connect to dynamoDB
+    // TODO Exercise 3: Store the request to dynamoDB
     // ...
-    const item = {
-        TableName: env.ddbTable,
-        Item: {
-            requestId: id,
-            state: 'pending',
-            data: requestData,
-        }
-    };
 
-
-    console.log('item',item)
-
-    try {
-        await docClient.send(new PutCommand(item));
-        return { status: 201, data: { id } };
-    } catch (error) {
-        console.error("Error saving data to DynamoDB", error);
-        return { status: 500, data: 'Error storing resource' };
-    }
 }
 
 async function fetchRequestById(requestId) {
@@ -58,8 +38,8 @@ async function fetchRequestById(requestId) {
         const { Item } = await docClient.send(new GetCommand(params));
         return Item ? { status: 200, data: {
                 ...Item.data,
-                requestId: Item.requestId,
-                state: Item.state}}
+                requestId: Item.requestId
+                }}
             :
                 { status: 404, data: 'Not Found' };
     } catch (error) {

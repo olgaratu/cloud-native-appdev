@@ -13,15 +13,4 @@ const server = app.listen(env.port, () => {
 
 // TODO Exercise 2: Use Sigterm handling to shut down gracefully
 // ...
-process.on('SIGTERM', () => {
-    console.log('SIGTERM signal received, about to shut down TMS Content Service.');
 
-    server.close(() => {
-        console.log('TMS Content Service shut down gracefully.');
-
-        // If any other connections and/or resources needs to be cleaned up,
-        // this is the place to do it.
-
-        process.exit(0);
-    });
-});
