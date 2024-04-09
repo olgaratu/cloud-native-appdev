@@ -1,0 +1,34 @@
+Parameters:
+  App:
+    Type: String
+    Description: Your application's name.
+  Env:
+    Type: String
+    Description: The name of the environment being deployed.
+
+Resources:
+  Content:
+    Metadata:
+      'aws:copilot:description': 'An Amazon DynamoDB table for Content'
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub ${App}-${Env}-Content
+      AttributeDefinitions:
+        - AttributeName: requestId
+          AttributeType: "S"
+      BillingMode: PAY_PER_REQUEST
+      KeySchema:
+        - AttributeName: requestId
+          KeyType: HASH
+
+Outputs:
+  ContentName:
+    Description: "The name of this DynamoDB table."
+    Value: !Ref Content
+    Export: 
+      Name: !Sub ${App}-${Env}-ContentTableName
+  ContentDynamoDBTableARN:
+    Description: "The ARN of the Content DynamoDB table."
+    Value: !GetAtt Content.Arn
+    Export: 
+      Name: !Sub ${App}-${Env}-ContentTableArn

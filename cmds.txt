@@ -1,0 +1,22 @@
+curl -X POST http://tms-te-Publi-FuhRJjElSxhX-1112938484.eu-north-1.elb.amazonaws.com/content-request -H "Content-Type: application/json" -d @test-data/request.json
+
+curl -X POST http://tms-te-Publi-FuhRJjElSxhX-1112938484.eu-north-1.elb.amazonaws.com/toggle-health
+
+ab -n 10 -T application/json -p test-data/request.json http://tms-te-Publi-FuhRJjElSxhX-1112938484.eu-north-1.elb.amazonaws.com/content-request
+
+
+curl -X POST http://<AWS_LB_URL>/content-request -H "Content-Type: application/json" -d @test-data/request.json
+
+https://sqs.eu-north-1.amazonaws.com/975050093532/TMS
+curl -X POST http://<AWS_LB_URL>/content-request -H "Content-Type: application/json" -d @test-data/request.json
+
+COPILOT_QUEUE_URI=https://sqs.eu-north-1.amazonaws.com/975050093532/TMS node src/index.js
+
+curl -X POST http://tms-te-Publi-FuhRJjElSxhX-1112938484.eu-north-1.elb.amazonaws.com/content-request -H "Content-Type: application/json" -d @test-data/request.json
+
+
+curl http://tms-te-Publi-FuhRJjElSxhX-1112938484.eu-north-1.elb.amazonaws.com/content-request/d767d77a-be21-4018-861f-7a0a25011560
+
+COPILOT_QUEUE_URI=https://sqs.eu-north-1.amazonaws.com/975050093532/TMS node src/index.js
+
+ab -n 50 -T application/json -p test-data/request.json hhttp://tms-te-Publi-FuhRJjElSxhX-1112938484.eu-north-1.elb.amazonaws.com/content-request
