@@ -89,7 +89,6 @@ routes.post('/content-request', async (req, res) => {
 
         console.log('Content Request ID ' + request.id + ' published to SNS.');
 
-        res.send(request);
 
     } catch (error) {
         console.error('Error storing contentRequest', error);

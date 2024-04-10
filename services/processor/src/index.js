@@ -1,5 +1,6 @@
 // TODO Exercise 4-0: Import dependencies from @aws-sdk/client-sqs and initialize SQSClient
 // ...
+
 const {
   SQSClient,
   DeleteMessageCommand,
@@ -9,6 +10,8 @@ const {
 const client = new SQSClient({ region: "eu-north-1" });
 
 const env = require("./env");
+
+
 
 // ...
 // Helper function for the "Service Autoscaling" section.
@@ -37,10 +40,11 @@ const processor = async () => {
     // Note: This may take up to 20 (WaitTime)Seconds - what happens if a SIGINT/SIGTERM is received in the meantime?
     // ...
 
+
     const out = await client.send(
       new ReceiveMessageCommand({
         QueueUrl: env.queueUrl,
-        WaitTimeSeconds: 15,
+        WaitTimeSeconds: 10,
       })
     );
 

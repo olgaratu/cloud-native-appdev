@@ -13,7 +13,7 @@ curl -X POST http://<AWS_LB_URL>/content-request -H "Content-Type: application/j
 COPILOT_QUEUE_URI=https://sqs.eu-north-1.amazonaws.com/975050093532/TMS node src/index.js
 
 curl -X POST http://tms-te-Publi-FuhRJjElSxhX-1112938484.eu-north-1.elb.amazonaws.com/content-request -H "Content-Type: application/json" -d @test-data/request.json
-
+http://<AWS_LB_URL>/content-request
 
 curl http://tms-te-Publi-FuhRJjElSxhX-1112938484.eu-north-1.elb.amazonaws.com/content-request/d767d77a-be21-4018-861f-7a0a25011560
 
